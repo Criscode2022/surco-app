@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+enum Role {
+  FARMER
+  TECHNICIAN
+}
+enum TaskStatus {
+  PENDING
+  ACTIVE
+  DONE
+  CANCELLED
+}
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  parcels      Parcel[]
+  tasksFarmer  FieldTask[] @relation("FarmerTasks")
+  tasksTech    FieldTask[] @relation("TechTasks")
+}
+model Parcel {
+  id        String      @id @default(cuid())
+  name      String
+  crop      String
+  hectares  Float
+  farmerId  String
+  farmer    User        @relation(fields: [farmerId], references: [id])
+  tasks     FieldTask[]
+  createdAt DateTime    @default(now())
+}
+model FieldTask {
+  id           String     @id @default(cuid())
+  code         String     @unique
+  title        String
+  notes        String     @default("")
+  status       TaskStatus @default(PENDING)
+  dueAt        DateTime
+  farmerId     String
+  farmer       User       @relation("FarmerTasks", fields: [farmerId], references: [id])
+  technicianId String?
+  technician   User?      @relation("TechTasks", fields: [technicianId], references: [id])
+  parcelId     String
+  parcel       Parcel     @relation(fields: [parcelId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
