@@ -18,7 +18,12 @@ import { RouterLink } from '@angular/router';
   <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
     <p class="text-xs font-bold tracking-[0.14em] text-straw">AGRO · EXPLOTACIÓN FAMILIAR</p>
     <h1 class="mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.08] md:text-6xl">El campo, al día.</h1>
-    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">Cuaderno digital de parcelas y tareas. El agricultor planifica; el técnico de campo actualiza estado. Sin papeles mojados en la cabina.</p>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">Cuaderno digital de parcelas y tareas. El agricultor planifica riego, poda y muestreo; el técnico cierra el estado en campo. Sin papeles mojados en la cabina ni fotos sueltas al grupo familiar.</p>
+    <ul class="mt-6 max-w-2xl space-y-2 text-sm text-ink">
+      <li><span class="font-semibold">Bancal olivar 3</span> · riego programado · técnico Ana</li>
+      <li><span class="font-semibold">Huerta del soto</span> · muestreo de suelo · pendiente</li>
+      <li><span class="font-semibold">Almendros norte</span> · poda de invierno · hecha</li>
+    </ul>
     <div class="mt-8 flex flex-wrap gap-3">
       <a routerLink="/login" class="rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white">Soy agricultor</a>
       <a routerLink="/login" class="rounded-full border border-border bg-surface px-6 py-3.5 text-sm font-semibold">Soy técnico</a>
